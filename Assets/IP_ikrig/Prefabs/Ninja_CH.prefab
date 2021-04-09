@@ -788,6 +788,7 @@ GameObject:
   - component: {fileID: 3296818898128175232}
   - component: {fileID: 8872244675889879802}
   - component: {fileID: 3787011081415901293}
+  - component: {fileID: 8125160841076580642}
   m_Layer: 0
   m_Name: Ninja_CH
   m_TagString: Player
@@ -821,7 +822,7 @@ Animator:
   m_GameObject: {fileID: 2777445530509892154}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 7e873eb579f108e41a63f5a9870b403f, type: 3}
-  m_Controller: {fileID: 9100000, guid: 4059c2d70b920de49a5ff194755ef98a, type: 2}
+  m_Controller: {fileID: 9100000, guid: dfebfc079c2888549afdafb767920e73, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -840,6 +841,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 48e8516d6a8fbc74a95f50409cbd1732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8125160841076580642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2777445530509892154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e18a9e37030561b42be8b326a3c40954, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2925844993093229543

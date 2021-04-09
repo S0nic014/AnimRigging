@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: ab1de6905f7799b4398345131f7c4553
+guid: 7d34f6baf64ec8841851f6fa5511c47d
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
-      74: 8569086860792628189
-    second: ninja_run_01
+      74: -7900647219542315587
+    second: ninja_idle_01
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -17,11 +17,11 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
-    motionNodeName: 
+    motionNodeName: c_root_00_jnt
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'ninja_run_01' has import animation warnings
+    animationImportWarnings: "\nClip 'ninja_idle_01' has import animation warnings
       that might lower retargeting quality:\nNote: Activate translation DOF on avatar
       to improve retargeting quality.\n\t'c_spine_02_jnt' is inbetween humanoid transforms
       and has rotation animation that will be discarded.\n"
@@ -38,11 +38,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: ninja_run_01
-      takeName: ninja_run_01
+      name: ninja_idle_01
+      takeName: ninja_idle_01
       internalID: 0
       firstFrame: 0
-      lastFrame: 43
+      lastFrame: 400
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -51,10 +51,10 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 1
       loopBlend: 0
-      loopBlendOrientation: 1
+      loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
-      keepOriginalOrientation: 1
+      keepOriginalOrientation: 0
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
       heightFromFeet: 0
