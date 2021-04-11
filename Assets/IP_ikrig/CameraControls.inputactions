@@ -1,0 +1,44 @@
+{
+    "name": "CameraControls",
+    "maps": [
+        {
+            "name": "ThirdPerson",
+            "id": "652ad02c-94d8-4677-adeb-38debef34cda",
+            "actions": [
+                {
+                    "name": "FreeLook",
+                    "type": "PassThrough",
+                    "id": "0b521ae9-29f7-42f9-8868-8c5450e978a7",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "2faa67db-d5f7-468d-ae46-95352331866a",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FreeLook",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0eadb352-bfad-41f3-b737-aef77c30873e",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FreeLook",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
