@@ -6,7 +6,7 @@
             "id": "652ad02c-94d8-4677-adeb-38debef34cda",
             "actions": [
                 {
-                    "name": "FreeLook",
+                    "name": "CameraRotate",
                     "type": "PassThrough",
                     "id": "0b521ae9-29f7-42f9-8868-8c5450e978a7",
                     "expectedControlType": "Vector2",
@@ -22,7 +22,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "FreeLook",
+                    "action": "CameraRotate",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -33,7 +33,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "FreeLook",
+                    "action": "CameraRotate",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

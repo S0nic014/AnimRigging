@@ -14,6 +14,8 @@ public class CharacterMovement : MonoBehaviour
     bool runPressed;
     CharacterController controller;
     public bool gravityEnabled = true;
+    public float turnLerpSpeed = 0.05f;
+    public Camera thirdPersonCamera;
 
     void Awake()
     {
@@ -45,10 +47,22 @@ public class CharacterMovement : MonoBehaviour
 
     void HandleRotation()
     {
-        Vector3 currentPosition = transform.position;
-        Vector3 newPosition = new Vector3(currentMovement.x, 0, currentMovement.y);
-        Vector3 positionToLookAt = currentPosition + newPosition;
-        transform.LookAt(positionToLookAt);
+        if (currentMovement == Vector2.zero)
+        {
+            return;
+        }
+        Vector3 newForward = thirdPersonCamera.transform.forward;
+        Vector3 newRight = thirdPersonCamera.transform.right;
+
+        newForward.y = 0f;
+        newRight.y = 0f;
+        newForward.Normalize();
+        newRight.Normalize();
+        Vector3 moveDirection = newForward * currentMovement.y + newRight * currentMovement.x;
+        if (moveDirection != Vector3.zero)
+        {
+            transform.forward = Vector3.Lerp(transform.forward, moveDirection, turnLerpSpeed);
+        }
     }
 
     void HandleMovement()
@@ -73,7 +87,7 @@ public class CharacterMovement : MonoBehaviour
         }
 
         // Stop running if not movement or run pressed and currently running
-        if ((!movementPressed && !runPressed) && isRunning)
+        if ((!movementPressed || !runPressed) && isRunning)
         {
             animator.SetBool(isRunningHash, false);
         }
