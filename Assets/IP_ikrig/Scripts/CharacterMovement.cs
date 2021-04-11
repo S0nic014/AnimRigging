@@ -12,6 +12,8 @@ public class CharacterMovement : MonoBehaviour
     Vector2 currentMovement;
     bool movementPressed;
     bool runPressed;
+    CharacterController controller;
+    public bool gravityEnabled = true;
 
     void Awake()
     {
@@ -27,15 +29,16 @@ public class CharacterMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         isWalkingHash = Animator.StringToHash("isWalking");
         isRunningHash = Animator.StringToHash("isRunning");
-
     }
 
     // Update is called once per frame
     void Update()
     {
+        HandleGravity();
         HandleRotation();
         HandleMovement();
     }
@@ -74,6 +77,20 @@ public class CharacterMovement : MonoBehaviour
         {
             animator.SetBool(isRunningHash, false);
         }
+    }
+
+    void HandleGravity()
+    {
+        if (!gravityEnabled)
+        {
+            return;
+        }
+        Vector3 moveVector = Vector3.zero;
+        if (!controller.isGrounded)
+        {
+            moveVector += Physics.gravity;
+        }
+        controller.SimpleMove(moveVector);
     }
 
     void OnEnable()

@@ -787,8 +787,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3296818898128175232}
   - component: {fileID: 8872244675889879802}
-  - component: {fileID: 3787011081415901293}
   - component: {fileID: 8125160841076580642}
+  - component: {fileID: 4177130597486054537}
+  - component: {fileID: 4904574755634272870}
   m_Layer: 0
   m_Name: Ninja_CH
   m_TagString: Player
@@ -831,18 +832,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &3787011081415901293
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2777445530509892154}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48e8516d6a8fbc74a95f50409cbd1732, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8125160841076580642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -855,6 +844,136 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e18a9e37030561b42be8b326a3c40954, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gravityEnabled: 1
+--- !u!114 &4177130597486054537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2777445530509892154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2d8418b0b9634b1892b0268dd9c2743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boneShape: 1
+  drawBones: 1
+  drawTripods: 0
+  boneSize: 1
+  tripodSize: 1
+  boneColor: {r: 0, g: 0, b: 1, a: 0.5}
+  m_Transforms:
+  - {fileID: 8419449326195347023}
+  - {fileID: 1452381182585136091}
+  - {fileID: 2595039753121302008}
+  - {fileID: 7028403272893931386}
+  - {fileID: 1558176052618084844}
+  - {fileID: 7279503462573924130}
+  - {fileID: 8158183471962417938}
+  - {fileID: 705324591322655057}
+  - {fileID: 3548759445502349199}
+  - {fileID: 114499208760148093}
+  - {fileID: 7300246038406601179}
+  - {fileID: 2234806613105045451}
+  - {fileID: 847086573164789684}
+  - {fileID: 4923164223854050811}
+  - {fileID: 6434043834468836992}
+  - {fileID: 5152600484083294203}
+  - {fileID: 504259053915993663}
+  - {fileID: 7537407283199045429}
+  - {fileID: 916396003918748621}
+  - {fileID: 105759729280313310}
+  - {fileID: 636701502061070684}
+  - {fileID: 2342260137310919924}
+  - {fileID: 3254333667962314425}
+  - {fileID: 4266273311280176565}
+  - {fileID: 2370771555948880512}
+  - {fileID: 1437458440925732851}
+  - {fileID: 6834113358947121235}
+  - {fileID: 393683625418531499}
+  - {fileID: 7004949400788115470}
+  - {fileID: 9134444509566663954}
+  - {fileID: 3590196745841168058}
+  - {fileID: 5947389602994538233}
+  - {fileID: 800577708833943701}
+  - {fileID: 2866576481340060896}
+  - {fileID: 4491576848366366666}
+  - {fileID: 1706301869425857335}
+  - {fileID: 3639030244565323694}
+  - {fileID: 5928319244964832661}
+  - {fileID: 545814698893500016}
+  - {fileID: 3968254674312532198}
+  - {fileID: 1822671428255590396}
+  - {fileID: 8349897745874281385}
+  - {fileID: 828243965478865695}
+  - {fileID: 9104394996712824384}
+  - {fileID: 6112964414732534251}
+  - {fileID: 7076961784126508448}
+  - {fileID: 6291401307694125518}
+  - {fileID: 4849706764794462892}
+  - {fileID: 4522304406408209743}
+  - {fileID: 8893238259821726801}
+  - {fileID: 507643261367482550}
+  - {fileID: 2261567777993127309}
+  - {fileID: 1935588367578347499}
+  - {fileID: 6565376671049596195}
+  - {fileID: 4954302125874149233}
+  - {fileID: 55374190688154901}
+  - {fileID: 2926610038420183236}
+  - {fileID: 263514885800719010}
+  - {fileID: 4713516730897170072}
+  - {fileID: 7129096042253360124}
+  - {fileID: 8257667451167424710}
+  - {fileID: 6737456373368604573}
+  - {fileID: 303596116184268990}
+  - {fileID: 510582406283768696}
+  - {fileID: 3532102984159825548}
+  - {fileID: 2330880116907378138}
+  - {fileID: 5585531354654158696}
+  - {fileID: 5247108355930931773}
+  - {fileID: 8513371913334760065}
+  - {fileID: 2038779579107360530}
+  - {fileID: 7978968906957005277}
+  - {fileID: 7475787413921551414}
+  - {fileID: 5442357051263640503}
+  - {fileID: 1525274870363764122}
+  - {fileID: 1698271830521913954}
+  - {fileID: 7125259902687077694}
+  - {fileID: 1173701795218514628}
+  - {fileID: 7164515109625576613}
+  - {fileID: 563809856996988522}
+  - {fileID: 5051166596295149727}
+  - {fileID: 3692079354525171132}
+  - {fileID: 5656390129111682723}
+  - {fileID: 7932272099902533454}
+  - {fileID: 8690120398137016099}
+  - {fileID: 4122839450924498695}
+  - {fileID: 7759121720075268226}
+  - {fileID: 9187899074109779405}
+  - {fileID: 7990137107347073051}
+  - {fileID: 7888180696580738111}
+  - {fileID: 2954717851463212332}
+  - {fileID: 8926550905933027510}
+  - {fileID: 296256375146742210}
+--- !u!143 &4904574755634272870
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2777445530509892154}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 1.8
+  m_Radius: 0.3
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0.975, z: 0}
 --- !u!1 &2925844993093229543
 GameObject:
   m_ObjectHideFlags: 0
