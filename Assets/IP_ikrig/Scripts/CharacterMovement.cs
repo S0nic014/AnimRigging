@@ -5,17 +5,23 @@ using UnityEngine.InputSystem;
 
 public class CharacterMovement : MonoBehaviour
 {
+
+    public enum MoveMode { walk, run };
+    CharacterController controller;
+    public Camera thirdPersonCamera;
     Animator animator;
-    int isWalkingHash;
-    int isRunningHash;
+    int speedHash;
     PlayerInput input;
     Vector2 currentMovement;
     bool movementPressed;
     bool runPressed;
-    CharacterController controller;
+    bool walkPressed;
+    public MoveMode defaultMoveMode = MoveMode.walk;
+    public float walkSpeed = 0.5f;
+    public float runSpeed = 1.0f;
     public bool gravityEnabled = true;
-    public float turnLerpSpeed = 0.05f;
-    public Camera thirdPersonCamera;
+    public float turnLerpTime = 0.05f;
+    public float accelerationTime = 0.02f;
 
     void Awake()
     {
@@ -26,6 +32,7 @@ public class CharacterMovement : MonoBehaviour
             movementPressed = currentMovement.x != 0 || currentMovement.y != 0;
         };
         input.CharacterControls.Run.performed += ctx => runPressed = ctx.ReadValueAsButton();
+        input.CharacterControls.Walk.performed += ctx => walkPressed = ctx.ReadValueAsButton();
     }
 
     // Start is called before the first frame update
@@ -33,8 +40,7 @@ public class CharacterMovement : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
-        isWalkingHash = Animator.StringToHash("isWalking");
-        isRunningHash = Animator.StringToHash("isRunning");
+        speedHash = Animator.StringToHash("speed");
     }
 
     // Update is called once per frame
@@ -61,36 +67,33 @@ public class CharacterMovement : MonoBehaviour
         Vector3 moveDirection = newForward * currentMovement.y + newRight * currentMovement.x;
         if (moveDirection != Vector3.zero)
         {
-            transform.forward = Vector3.Lerp(transform.forward, moveDirection, turnLerpSpeed);
+            transform.forward = Vector3.Lerp(transform.forward, moveDirection, turnLerpTime);
         }
     }
 
     void HandleMovement()
     {
-        bool isRunning = animator.GetBool(isRunningHash);
-        bool isWalking = animator.GetBool(isWalkingHash);
-
-        if (movementPressed && !isWalking)
+        float maxSpeed = 0.0f;
+        if (defaultMoveMode == MoveMode.walk)
         {
-            animator.SetBool(isWalkingHash, true);
+            maxSpeed = walkSpeed;
+            if (runPressed)
+            {
+                maxSpeed = runSpeed;
+            }
         }
-
-        if (!movementPressed && isWalking)
+        else
         {
-            animator.SetBool(isWalkingHash, false);
+            maxSpeed = runSpeed;
+            if (walkPressed)
+            {
+                maxSpeed = walkSpeed;
+            }
         }
-
-        // Start running if movement and run pressed and not already running
-        if ((movementPressed && runPressed) && !isRunning)
-        {
-            animator.SetBool(isRunningHash, true);
-        }
-
-        // Stop running if not movement or run pressed and currently running
-        if ((!movementPressed || !runPressed) && isRunning)
-        {
-            animator.SetBool(isRunningHash, false);
-        }
+        float oldSpeed = animator.GetFloat(speedHash);
+        float newSpeed = Mathf.Clamp(Mathf.Abs(currentMovement.x) + Mathf.Abs(currentMovement.y), 0.0f, maxSpeed);
+        float smoothedSpeed = Mathf.Lerp(oldSpeed, newSpeed, accelerationTime);
+        animator.SetFloat(speedHash, smoothedSpeed);
     }
 
     void HandleGravity()
