@@ -9,16 +9,22 @@ public class CharacterMovement : MonoBehaviour
     public enum MoveMode { walk, run };
     CharacterController controller;
     public Camera thirdPersonCamera;
+
+    // Animator
     Animator animator;
     int speedHash;
+    int isJumpingHash;
     PlayerInput input;
     Vector2 currentMovement;
     bool movementPressed;
     bool runPressed;
     bool walkPressed;
-    public MoveMode defaultMoveMode = MoveMode.walk;
     public float walkSpeed = 0.5f;
     public float runSpeed = 1.0f;
+
+    // Locomotion params
+    public MoveMode defaultMoveMode = MoveMode.walk;
+    public bool rotateDuringJump = false;
     public bool gravityEnabled = true;
     public float turnLerpTime = 0.05f;
     public float accelerationTime = 0.02f;
@@ -33,6 +39,7 @@ public class CharacterMovement : MonoBehaviour
         };
         input.CharacterControls.Run.performed += ctx => runPressed = ctx.ReadValueAsButton();
         input.CharacterControls.Walk.performed += ctx => walkPressed = ctx.ReadValueAsButton();
+        input.CharacterControls.Jump.performed += ctx => HandleJump();
     }
 
     // Start is called before the first frame update
@@ -41,6 +48,7 @@ public class CharacterMovement : MonoBehaviour
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         speedHash = Animator.StringToHash("speed");
+        isJumpingHash = Animator.StringToHash("isJumping");
     }
 
     // Update is called once per frame
@@ -53,6 +61,13 @@ public class CharacterMovement : MonoBehaviour
 
     void HandleRotation()
     {
+        // Commited jump
+        if (animator.GetBool(isJumpingHash) && !rotateDuringJump)
+        {
+            return;
+        }
+
+        // Process rotation
         if (currentMovement == Vector2.zero)
         {
             return;
@@ -92,8 +107,8 @@ public class CharacterMovement : MonoBehaviour
         }
         float oldSpeed = animator.GetFloat(speedHash);
         float newSpeed = Mathf.Clamp(Mathf.Abs(currentMovement.x) + Mathf.Abs(currentMovement.y), 0.0f, maxSpeed);
-        float smoothedSpeed = Mathf.Lerp(oldSpeed, newSpeed, accelerationTime);
-        animator.SetFloat(speedHash, smoothedSpeed);
+        float smoothSpeed = Mathf.Lerp(oldSpeed, newSpeed, accelerationTime);
+        animator.SetFloat(speedHash, smoothSpeed);
     }
 
     void HandleGravity()
@@ -110,6 +125,19 @@ public class CharacterMovement : MonoBehaviour
         controller.SimpleMove(moveVector);
     }
 
+    void HandleJump()
+    {
+        animator.SetBool(isJumpingHash, true);
+        gravityEnabled = false;
+    }
+
+    private void Land()
+    {
+        gravityEnabled = true;
+        animator.SetBool(isJumpingHash, false);
+    }
+
+    // Controls
     void OnEnable()
     {
         input.CharacterControls.Enable();
