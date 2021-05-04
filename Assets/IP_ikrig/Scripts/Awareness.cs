@@ -18,7 +18,8 @@ public class Awareness : MonoBehaviour
     private float handOffset = 0.07f;
     private Vector3 rightHandRestPosition;
     private Quaternion rightHandRestRotation;
-    private float lerpSpeed = 2.0f;
+    public float raiseSpeed = 0.02f;
+    public float lowerSpeed = 0.05f;
 
 
 
@@ -62,22 +63,14 @@ public class Awareness : MonoBehaviour
             }
             perpedicularEuler.z = Mathf.Clamp(perfedicularHandRotation.eulerAngles.z, rightHandRestRotation.eulerAngles.z, -70.0f);
             perfedicularHandRotation.eulerAngles = perpedicularEuler;
+            rightHandAvoider.rotation = perfedicularHandRotation;
 
             // Interpolate rotation, rig weight
-            rightHandAvoider.rotation = perfedicularHandRotation;
-            handsAvoidanceRig.weight = Mathf.Lerp(handsAvoidanceRig.weight, 1.0f, Time.deltaTime * lerpSpeed);
+            handsAvoidanceRig.weight = Mathf.MoveTowards(handsAvoidanceRig.weight, 1.0f, raiseSpeed);
         }
         else
         {
-            // TODO: Fix lerping
-            if (handsAvoidanceRig.weight < 0.001f)
-            {
-                handsAvoidanceRig.weight = 0.0f;
-            }
-            else
-            {
-                handsAvoidanceRig.weight = Mathf.SmoothStep(handsAvoidanceRig.weight, 0.0f, 0.2f);
-            }
+            handsAvoidanceRig.weight = Mathf.MoveTowards(handsAvoidanceRig.weight, 0.0f, lowerSpeed);
         }
     }
 }
