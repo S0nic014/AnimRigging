@@ -21,6 +21,7 @@ public class CharacterMovement : MonoBehaviour
     bool walkPressed;
     public float walkSpeed = 0.5f;
     public float runSpeed = 1.0f;
+    private float currentSpeed = 0.0f;
 
     // Locomotion params
     public MoveMode defaultMoveMode = MoveMode.walk;
@@ -107,8 +108,8 @@ public class CharacterMovement : MonoBehaviour
         }
         float oldSpeed = animator.GetFloat(speedHash);
         float newSpeed = Mathf.Clamp(Mathf.Abs(currentMovement.x) + Mathf.Abs(currentMovement.y), 0.0f, maxSpeed);
-        float smoothSpeed = Mathf.Lerp(oldSpeed, newSpeed, accelerationTime);
-        animator.SetFloat(speedHash, smoothSpeed);
+        currentSpeed = Mathf.Lerp(oldSpeed, newSpeed, accelerationTime);
+        animator.SetFloat(speedHash, currentSpeed);
     }
 
     void HandleGravity()
@@ -146,5 +147,10 @@ public class CharacterMovement : MonoBehaviour
     void OnDisable()
     {
         input.CharacterControls.Disable();
+    }
+
+    public float CurrentSpeed()
+    {
+        return currentSpeed;
     }
 }

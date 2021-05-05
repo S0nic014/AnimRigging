@@ -13,6 +13,8 @@ public class Awareness : MonoBehaviour
 
     [SerializeField]
     Rig handsAvoidanceRig;
+    CharacterMovement movement;
+    Animator animator;
 
     private float radius = 0.7f;
     private float handOffset = 0.07f;
@@ -26,6 +28,8 @@ public class Awareness : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
+        movement = GetComponent<CharacterMovement>();
         rightHandRestPosition = rightHandAvoider.position;
         rightHandRestRotation = rightHandAvoider.rotation;
     }
@@ -43,8 +47,11 @@ public class Awareness : MonoBehaviour
 
     void HandleRightHand()
     {
+        bool isJumping = animator.GetBool("isJumping");
+        bool isRunning = movement.CurrentSpeed() > movement.walkSpeed;
+        bool canAvoid = !isJumping && !isRunning;
         RaycastHit rightHit;
-        if (Physics.Raycast(sideRaycastSource.position, sideRaycastSource.right, out rightHit, radius))
+        if (Physics.Raycast(sideRaycastSource.position, sideRaycastSource.right, out rightHit, radius) && canAvoid)
         {
             rightHandAvoider.position = rightHit.point + handOffset * rightHit.normal;
             Quaternion perfedicularHandRotation = Quaternion.FromToRotation(rightHandAvoider.up, rightHit.normal) * rightHandAvoider.rotation;
