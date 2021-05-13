@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 
-public class Awareness : MonoBehaviour
+public class HandAttraction : MonoBehaviour
 {
 
     [SerializeField]
@@ -12,7 +12,7 @@ public class Awareness : MonoBehaviour
     Transform rightHandAvoider;
 
     [SerializeField]
-    Rig handsAvoidanceRig;
+    Rig handsAttractionRig;
     CharacterMovement movement;
     Animator animator;
 
@@ -20,7 +20,7 @@ public class Awareness : MonoBehaviour
     private float handOffset = 0.07f;
     private Vector3 rightHandRestPosition;
     private Quaternion rightHandRestRotation;
-    public float raiseSpeed = 0.02f;
+    public float raiseSpeed = 0.05f;
     public float lowerSpeed = 0.05f;
 
 
@@ -53,6 +53,11 @@ public class Awareness : MonoBehaviour
         RaycastHit rightHit;
         if (Physics.Raycast(sideRaycastSource.position, sideRaycastSource.right, out rightHit, radius) && canAvoid)
         {
+            if (rightHit.collider.tag != "Attractable")
+            {
+                DisableRig();
+            }
+
             rightHandAvoider.position = rightHit.point + handOffset * rightHit.normal;
             Quaternion perfedicularHandRotation = Quaternion.FromToRotation(rightHandAvoider.up, rightHit.normal) * rightHandAvoider.rotation;
             Vector3 perpedicularEuler = perfedicularHandRotation.eulerAngles;
@@ -73,11 +78,20 @@ public class Awareness : MonoBehaviour
             rightHandAvoider.rotation = perfedicularHandRotation;
 
             // Interpolate rotation, rig weight
-            handsAvoidanceRig.weight = Mathf.MoveTowards(handsAvoidanceRig.weight, 1.0f, raiseSpeed);
+            EnableRig();
         }
         else
         {
-            handsAvoidanceRig.weight = Mathf.MoveTowards(handsAvoidanceRig.weight, 0.0f, lowerSpeed);
+            DisableRig();
         }
+    }
+
+    void EnableRig()
+    {
+        handsAttractionRig.weight = Mathf.MoveTowards(handsAttractionRig.weight, 1.0f, raiseSpeed);
+    }
+    void DisableRig()
+    {
+        handsAttractionRig.weight = Mathf.MoveTowards(handsAttractionRig.weight, 0.0f, lowerSpeed);
     }
 }
