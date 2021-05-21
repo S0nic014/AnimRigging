@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Attractable
   - Avoidable
+  - Interactable
   layers:
   - Default
   - TransparentFX

@@ -19,6 +19,7 @@ public class CharacterMovement : MonoBehaviour
     bool movementPressed;
     bool runPressed;
     bool walkPressed;
+    public bool isPossesed = true;
     public float walkSpeed = 0.5f;
     public float runSpeed = 1.0f;
     private float currentSpeed = 0.0f;
@@ -56,6 +57,10 @@ public class CharacterMovement : MonoBehaviour
     void Update()
     {
         HandleGravity();
+        if (isPossesed)
+        {
+            return;
+        }
         HandleRotation();
         HandleMovement();
     }
