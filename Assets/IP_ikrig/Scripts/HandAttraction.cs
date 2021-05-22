@@ -53,7 +53,7 @@ public class HandAttraction : MonoBehaviour
         RaycastHit rightHit;
         if (Physics.Raycast(sideRaycastSource.position, sideRaycastSource.right, out rightHit, radius) && canAvoid)
         {
-            if (rightHit.collider.tag != "Attractable")
+            if (!rightHit.collider.CompareTag("Attractable"))
             {
                 DisableRig();
             }

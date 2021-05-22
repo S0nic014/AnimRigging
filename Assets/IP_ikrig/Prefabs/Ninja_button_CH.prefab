@@ -668,7 +668,7 @@ GameObject:
   - component: {fileID: 4656842443297108354}
   - component: {fileID: 2872312367727551582}
   m_Layer: 0
-  m_Name: Ninja_button
+  m_Name: Ninja_button_CH
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1051,10 +1051,10 @@ MonoBehaviour:
     m_MinLimit: -80
     m_MaxLimit: 80
     m_AimAxis: 4
-    m_UpAxis: 2
+    m_UpAxis: 1
     m_WorldUpType: 3
     m_WorldUpObject: {fileID: 1378550624161745286}
-    m_WorldUpAxis: 2
+    m_WorldUpAxis: 1
     m_MaintainOffset: 1
     m_ConstrainedAxes:
       x: 1
@@ -1282,10 +1282,10 @@ MonoBehaviour:
     m_MinLimit: -80
     m_MaxLimit: 80
     m_AimAxis: 4
-    m_UpAxis: 2
+    m_UpAxis: 1
     m_WorldUpType: 3
     m_WorldUpObject: {fileID: 1378550624161745286}
-    m_WorldUpAxis: 2
+    m_WorldUpAxis: 1
     m_MaintainOffset: 1
     m_ConstrainedAxes:
       x: 1

@@ -7,8 +7,8 @@ public class LookAtClamp : MonoBehaviour
 {
     [SerializeField]
     private Rig lookAtRig;
-    [SerializeField]
 
+    [SerializeField]
     private Transform lookAtTarget;
     public float switchDelta = 0.05f;
     void Start()

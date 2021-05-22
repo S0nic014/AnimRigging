@@ -1117,8 +1117,9 @@ GameObject:
   - component: {fileID: 2552522459204997050}
   - component: {fileID: 8563660493964951268}
   - component: {fileID: 4135362617237749072}
+  - component: {fileID: 8334035616605332328}
   m_Layer: 0
-  m_Name: Ninja_CH
+  m_Name: Ninja_3P_CH
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1179,7 +1180,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thirdPersonCamera: {fileID: 0}
-  isPossesed: 1
   walkSpeed: 0.5
   runSpeed: 1
   defaultMoveMode: 0
@@ -1339,8 +1339,6 @@ MonoBehaviour:
     m_Active: 1
   - m_Rig: {fileID: 8706810018402279640}
     m_Active: 1
-  - m_Rig: {fileID: 0}
-    m_Active: 1
   m_Effectors:
   - m_Transform: {fileID: 6440166902499863006}
     m_Style:
@@ -1390,6 +1388,20 @@ MonoBehaviour:
   lookAtRig: {fileID: 3085033351134519033}
   lookAtTarget: {fileID: 4721085429240748285}
   switchDelta: 0.05
+--- !u!114 &8334035616605332328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2777445530509892154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63c139be995f21249beebfac01a21178, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lookTargetLocator: {fileID: 4721085429240748285}
+  attentionRadius: 3
 --- !u!1 &2925844993093229543
 GameObject:
   m_ObjectHideFlags: 0
@@ -3390,7 +3402,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5379719666317646213}
   m_LocalRotation: {x: -0, y: 0.0000023068449, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 1.427, z: 1.299}
+  m_LocalPosition: {x: 0, y: 1.5, z: 1.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5589695883824504453}
@@ -4284,10 +4296,10 @@ MonoBehaviour:
     m_MinLimit: -80
     m_MaxLimit: 80
     m_AimAxis: 4
-    m_UpAxis: 2
+    m_UpAxis: 1
     m_WorldUpType: 3
     m_WorldUpObject: {fileID: 1698271830521913954}
-    m_WorldUpAxis: 2
+    m_WorldUpAxis: 1
     m_MaintainOffset: 1
     m_ConstrainedAxes:
       x: 1
@@ -4491,7 +4503,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6432301259625439096}
   m_Layer: 0
-  m_Name: RightHandAvoider
+  m_Name: RightHandAttractPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4845,10 +4857,10 @@ MonoBehaviour:
     m_MinLimit: -80
     m_MaxLimit: 80
     m_AimAxis: 4
-    m_UpAxis: 2
+    m_UpAxis: 1
     m_WorldUpType: 3
     m_WorldUpObject: {fileID: 1698271830521913954}
-    m_WorldUpAxis: 2
+    m_WorldUpAxis: 1
     m_MaintainOffset: 1
     m_ConstrainedAxes:
       x: 1
