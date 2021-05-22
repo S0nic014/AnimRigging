@@ -59,20 +59,10 @@ public class HandAttraction : MonoBehaviour
             }
 
             rightHandAvoider.position = rightHit.point + handOffset * rightHit.normal;
-            Quaternion perfedicularHandRotation = Quaternion.FromToRotation(rightHandAvoider.up, rightHit.normal) * rightHandAvoider.rotation;
+            Quaternion perfedicularHandRotation = Quaternion.FromToRotation(rightHandAvoider.up, rightHit.normal.normalized) * rightHandAvoider.rotation;
             Vector3 perpedicularEuler = perfedicularHandRotation.eulerAngles;
 
-            // Reset unuszed rotation, clamp Z
-            if (rightHit.normal.x < 0f)
-            {
-                perpedicularEuler.x = rightHandRestRotation.eulerAngles.x;
-                perpedicularEuler.y = rightHandRestRotation.eulerAngles.y;
-            }
-            else
-            {
-                perpedicularEuler.x = 0f;
-                perpedicularEuler.y = 0f;
-            }
+            // Clamp Z
             perpedicularEuler.z = Mathf.Clamp(perfedicularHandRotation.eulerAngles.z, rightHandRestRotation.eulerAngles.z, -70.0f);
             perfedicularHandRotation.eulerAngles = perpedicularEuler;
             rightHandAvoider.rotation = perfedicularHandRotation;
