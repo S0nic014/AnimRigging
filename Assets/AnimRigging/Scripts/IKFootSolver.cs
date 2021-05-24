@@ -1,3 +1,5 @@
+// Original source: https://learn.unity.com/tutorial/workshop-video-procedural-walker?projectId=5f9350ffedbc2a0020193331#
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
