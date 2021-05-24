@@ -6,27 +6,35 @@ public class Attention : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    [SerializeField]
-    private Transform lookTargetLocator;
+    [SerializeField] private LayerMask attentionLayer = default;
+    [SerializeField] private Transform lookTargetLocator;
+    [SerializeField] private Transform attentionSource;
     public float attentionRadius = 3.0f;
     private Collider[] overlappedColliders;
     private Vector3 restOffset;
 
     void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(transform.position, attentionRadius);
+        if (!attentionSource)
+        {
+            attentionSource = transform;
+        }
+        Gizmos.DrawWireSphere(attentionSource.position, attentionRadius);
     }
 
     void Start()
     {
         restOffset = lookTargetLocator.localPosition;
+        if (!attentionSource)
+        {
+            attentionSource = transform;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        int layerMask = 1 << LayerMask.NameToLayer("Interactable");
-        overlappedColliders = Physics.OverlapSphere(transform.position, attentionRadius, layerMask);
+        overlappedColliders = Physics.OverlapSphere(attentionSource.position, attentionRadius, attentionLayer);
         Transform attentionTarget = getClosestTarget();
 
         Vector3 newTargetPosition;
@@ -45,9 +53,13 @@ public class Attention : MonoBehaviour
     {
         Transform closestTarget = null;
         float closestDistanceSqr = Mathf.Infinity;
-        Vector3 currentPosition = transform.position;
+        Vector3 currentPosition = attentionSource.position;
         foreach (Collider hitCollider in overlappedColliders)
         {
+            if (hitCollider.transform == this.transform)
+            {
+                continue;
+            }
             Vector3 directionToTarget = hitCollider.transform.position - currentPosition;
             float distanceToTargetSqr = directionToTarget.sqrMagnitude;
             if (distanceToTargetSqr < closestDistanceSqr)

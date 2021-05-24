@@ -1387,7 +1387,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookAtRig: {fileID: 3085033351134519033}
   lookAtTarget: {fileID: 4721085429240748285}
-  switchDelta: 0.05
+  switchDelta: 0.02
 --- !u!114 &8334035616605332328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1401,7 +1401,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lookTargetLocator: {fileID: 4721085429240748285}
-  attentionRadius: 3
+  attentionSource: {fileID: 7279503462573924130}
+  attentionRadius: 4
 --- !u!1 &2925844993093229543
 GameObject:
   m_ObjectHideFlags: 0

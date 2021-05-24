@@ -10,7 +10,7 @@ public class LookAtClamp : MonoBehaviour
 
     [SerializeField]
     private Transform lookAtTarget;
-    public float switchDelta = 0.05f;
+    public float switchDelta = 0.02f;
     void Start()
     {
 
