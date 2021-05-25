@@ -5,22 +5,26 @@ using UnityEngine.Animations.Rigging;
 
 public class LookAtClamp : MonoBehaviour
 {
-    [SerializeField]
-    private Rig lookAtRig;
+    [SerializeField] Rig lookAtRig;
 
-    [SerializeField]
-    private Transform lookAtTarget;
+    [SerializeField] Transform lookAtTarget;
     public float switchDelta = 0.02f;
+    private Animator animator;
     void Start()
     {
-
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 toTarget = (lookAtTarget.position - transform.position).normalized;
+        if (animator.GetBool("isJumping"))
+        {
+            lookAtRig.weight = Mathf.MoveTowards(lookAtRig.weight, 0.0f, switchDelta);
+            return;
+        }
 
+        Vector3 toTarget = (lookAtTarget.position - transform.position).normalized;
         float dot = Vector3.Dot(toTarget, transform.forward);
         if (dot < 0)
         {
