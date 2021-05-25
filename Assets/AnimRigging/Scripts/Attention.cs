@@ -9,6 +9,7 @@ public class Attention : MonoBehaviour
     [SerializeField] private LayerMask attentionLayer = default;
     [SerializeField] private Transform lookTargetLocator;
     [SerializeField] private Transform attentionSource;
+    [SerializeField] float switchSpeed = 0.1f;
     public float attentionRadius = 3.0f;
     private Collider[] overlappedColliders;
     private Vector3 restOffset;
@@ -44,9 +45,13 @@ public class Attention : MonoBehaviour
         }
         else
         {
+            if (attentionTarget.TryGetComponent<AttentionPoint>(out AttentionPoint target))
+            {
+                attentionTarget = target.GetTarget();
+            }
             newTargetPosition = attentionTarget.position;
         }
-        lookTargetLocator.position = Vector3.MoveTowards(lookTargetLocator.position, newTargetPosition, 0.1f);
+        lookTargetLocator.position = Vector3.MoveTowards(lookTargetLocator.position, newTargetPosition, switchSpeed);
     }
 
     Transform getClosestTarget()
@@ -68,6 +73,7 @@ public class Attention : MonoBehaviour
                 closestTarget = hitCollider.transform;
             }
         }
+
         return closestTarget;
     }
 }

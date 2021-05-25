@@ -6,13 +6,11 @@ using UnityEngine.Animations.Rigging;
 public class HandAttraction : MonoBehaviour
 {
 
-    [SerializeField]
-    Transform sideRaycastSource;
-    [SerializeField]
-    Transform rightHandAvoider;
+    [SerializeField] Transform sideRaycastSource;
+    [SerializeField] Transform rightHandAvoider;
 
-    [SerializeField]
-    Rig handsAttractionRig;
+    [SerializeField] Rig handsAttractionRig;
+    [SerializeField] LayerMask attractedLayer = default;
     CharacterMovement movement;
     Animator animator;
 
@@ -51,12 +49,8 @@ public class HandAttraction : MonoBehaviour
         bool isRunning = movement.CurrentSpeed() > movement.walkSpeed;
         bool canAvoid = !isJumping && !isRunning;
         RaycastHit rightHit;
-        if (Physics.Raycast(sideRaycastSource.position, sideRaycastSource.right, out rightHit, radius) && canAvoid)
+        if (Physics.Raycast(sideRaycastSource.position, sideRaycastSource.right, out rightHit, radius, attractedLayer.value) && canAvoid)
         {
-            if (!rightHit.collider.CompareTag("Attractable"))
-            {
-                DisableRig();
-            }
 
             rightHandAvoider.position = rightHit.point + handOffset * rightHit.normal;
             Quaternion perfedicularHandRotation = Quaternion.FromToRotation(rightHandAvoider.up, rightHit.normal.normalized) * rightHandAvoider.rotation;

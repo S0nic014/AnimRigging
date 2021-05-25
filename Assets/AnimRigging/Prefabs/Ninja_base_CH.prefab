@@ -781,8 +781,9 @@ GameObject:
   - component: {fileID: 9122160265515151555}
   - component: {fileID: 9122160265515151552}
   - component: {fileID: 9122160265515151553}
+  - component: {fileID: 5120993102806283178}
   m_Layer: 0
-  m_Name: Ninja_base
+  m_Name: Ninja_base_CH
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -816,7 +817,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 7e873eb579f108e41a63f5a9870b403f, type: 3}
   m_Controller: {fileID: 0}
-  m_CullingMode: 1
+  m_CullingMode: 2
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
@@ -831,7 +832,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9122160265515151558}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b2d8418b0b9634b1892b0268dd9c2743, type: 3}
   m_Name: 
@@ -993,6 +994,21 @@ MonoBehaviour:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 90}
     m_Visible: 0
+--- !u!114 &5120993102806283178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9122160265515151558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cff504668f15607409fc8b6c1e1b806e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lookAtRig: {fileID: 9122160266275815256}
+  lookAtTarget: {fileID: 9122160266487726076}
+  switchDelta: 0.02
 --- !u!1 &9122160265517456388
 GameObject:
   m_ObjectHideFlags: 0
@@ -3032,10 +3048,10 @@ MonoBehaviour:
     m_MinLimit: -80
     m_MaxLimit: 80
     m_AimAxis: 4
-    m_UpAxis: 2
+    m_UpAxis: 1
     m_WorldUpType: 3
     m_WorldUpObject: {fileID: 9122160266119111117}
-    m_WorldUpAxis: 2
+    m_WorldUpAxis: 1
     m_MaintainOffset: 1
     m_ConstrainedAxes:
       x: 1
@@ -3149,10 +3165,10 @@ MonoBehaviour:
     m_MinLimit: -80
     m_MaxLimit: 80
     m_AimAxis: 4
-    m_UpAxis: 2
+    m_UpAxis: 1
     m_WorldUpType: 3
     m_WorldUpObject: {fileID: 9122160266119111117}
-    m_WorldUpAxis: 2
+    m_WorldUpAxis: 1
     m_MaintainOffset: 1
     m_ConstrainedAxes:
       x: 1
