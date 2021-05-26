@@ -9,6 +9,7 @@ public class CharacterMovement : MonoBehaviour
     public enum MoveMode { walk, run };
     CharacterController controller;
     public Camera thirdPersonCamera;
+    private Picker itemPicker;
 
     // Animator
     Animator animator;
@@ -41,6 +42,7 @@ public class CharacterMovement : MonoBehaviour
         input.CharacterControls.Run.performed += ctx => runPressed = ctx.ReadValueAsButton();
         input.CharacterControls.Walk.performed += ctx => walkPressed = ctx.ReadValueAsButton();
         input.CharacterControls.Jump.performed += ctx => HandleJump();
+        input.CharacterControls.Interact.performed += ctx => Interact();
     }
 
     // Start is called before the first frame update
@@ -50,6 +52,7 @@ public class CharacterMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         speedHash = Animator.StringToHash("speed");
         isJumpingHash = Animator.StringToHash("isJumping");
+        itemPicker = GetComponent<Picker>();
     }
 
     // Update is called once per frame
@@ -136,6 +139,11 @@ public class CharacterMovement : MonoBehaviour
     {
         gravityEnabled = true;
         animator.SetBool(isJumpingHash, false);
+    }
+
+    private void Interact()
+    {
+        itemPicker.PickupItem(animator);
     }
 
     // Controls

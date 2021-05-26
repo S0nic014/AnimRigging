@@ -10,6 +10,7 @@ public class Attention : MonoBehaviour
     [SerializeField] private Transform lookTargetLocator;
     [SerializeField] private Transform attentionSource;
     [SerializeField] float switchSpeed = 0.1f;
+    private Transform overrideTarget;
     public float attentionRadius = 3.0f;
     private Collider[] overlappedColliders;
     private Vector3 restOffset;
@@ -75,5 +76,14 @@ public class Attention : MonoBehaviour
         }
 
         return closestTarget;
+    }
+
+    void SetOverrideTarget(Transform target)
+    {
+        overrideTarget = target;
+    }
+    Transform GetOverrideTarget()
+    {
+        return overrideTarget;
     }
 }
