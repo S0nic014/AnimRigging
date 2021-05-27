@@ -7,7 +7,7 @@ public class HandAttraction : MonoBehaviour
 {
 
     [SerializeField] Transform sideRaycastSource;
-    [SerializeField] Transform rightHandAvoider;
+    [SerializeField] Transform rightHandTarget;
 
     [SerializeField] Rig handsAttractionRig;
     [SerializeField] LayerMask attractedLayer = default;
@@ -28,8 +28,8 @@ public class HandAttraction : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         movement = GetComponent<CharacterMovement>();
-        rightHandRestPosition = rightHandAvoider.position;
-        rightHandRestRotation = rightHandAvoider.rotation;
+        rightHandRestPosition = rightHandTarget.position;
+        rightHandRestRotation = rightHandTarget.rotation;
     }
 
     // Update is called once per frame
@@ -52,14 +52,14 @@ public class HandAttraction : MonoBehaviour
         if (Physics.Raycast(sideRaycastSource.position, sideRaycastSource.right, out rightHit, radius, attractedLayer.value) && canAvoid)
         {
 
-            rightHandAvoider.position = rightHit.point + handOffset * rightHit.normal;
-            Quaternion perfedicularHandRotation = Quaternion.FromToRotation(rightHandAvoider.up, rightHit.normal.normalized) * rightHandAvoider.rotation;
+            rightHandTarget.position = rightHit.point + handOffset * rightHit.normal;
+            Quaternion perfedicularHandRotation = Quaternion.FromToRotation(rightHandTarget.up, rightHit.normal.normalized) * rightHandTarget.rotation;
             Vector3 perpedicularEuler = perfedicularHandRotation.eulerAngles;
 
             // Clamp Z
             perpedicularEuler.z = Mathf.Clamp(perfedicularHandRotation.eulerAngles.z, rightHandRestRotation.eulerAngles.z, -70.0f);
             perfedicularHandRotation.eulerAngles = perpedicularEuler;
-            rightHandAvoider.rotation = perfedicularHandRotation;
+            rightHandTarget.rotation = perfedicularHandRotation;
 
             // Interpolate rotation, rig weight
             EnableRig();
