@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/IP_ikrig/PlayerInput.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/AnimRigging/PlayerInput.inputactions'
 
 using System;
 using System.Collections;
